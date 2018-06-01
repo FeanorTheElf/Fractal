@@ -1,0 +1,2 @@
+cd bin
+java -cp "E:\Program Files\Java\lwjgl\lwjgl.jar;E:\Program Files\Java\lwjgl\lwjgl_util.jar;E:\Program Files\Java\SimonUtil\SimonUtil.jar;." -Djava.library.path="E:\Program Files\Java\lwjgl\native" Main
