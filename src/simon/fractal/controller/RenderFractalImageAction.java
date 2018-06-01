@@ -12,14 +12,11 @@ import javax.imageio.ImageIO;
 
 import simon.fractal.ExitController;
 import simon.fractal.display.FractalComponent;
-import simon.fractal.formulas.FractalBuildException;
 import simon.fractal.logging.Logger;
 import simon.fractal.logging.LoggerFactory;
 import simon.fractal.rendering.FractalRenderer;
 import simon.fractal.rendering.FractalRendererException;
 import simon.fractal.rendering.FractalRenderingHandle;
-import simon.fractal.rendering.gpu.CLException;
-import simon.fractal.rendering.gpu.DefaultRenderProgramFactory;
 import simon.fractal.rendering.stacked.FractalRendererFactory;
 import simon.fractal.rendering.stacked.StackedFractalRenderer;
 
@@ -32,13 +29,13 @@ class RenderFractalImageAction extends FractalComponentAction{
 		super(component);
 		final Stack<FractalRendererFactory> factories = new Stack<>();
 		factories.push(simon.fractal.rendering.cpu.ParallelFractalRenderer::new);
-		factories.push(() -> {
-			try {
-				return new simon.fractal.rendering.gpu.GPUFractalRenderer(new DefaultRenderProgramFactory());
-			} catch (CLException ex) {
-				throw new FractalBuildException(ex);
-			}
-		});
+//		factories.push(() -> {
+//			try {
+//				return new simon.fractal.rendering.gpu.GPUFractalRenderer(new DefaultRenderProgramFactory());
+//			} catch (CLException ex) {
+//				throw new FractalBuildException(ex);
+//			}
+//		});
 		renderer = new StackedFractalRenderer(factories);
 		ExitController.getInstance().closeAtExit(renderer);
 	}

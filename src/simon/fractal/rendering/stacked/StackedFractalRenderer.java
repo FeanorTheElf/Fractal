@@ -3,7 +3,6 @@ package simon.fractal.rendering.stacked;
 import java.util.Stack;
 
 import simon.fractal.coloring.ColoringPattern;
-import simon.fractal.formulas.FractalBuildException;
 import simon.fractal.formulas.FractalFormula;
 import simon.fractal.formulas.FractalImageMap;
 import simon.fractal.logging.Logger;
@@ -23,14 +22,14 @@ public class StackedFractalRenderer implements FractalRenderer{
 	private ColoringPattern pattern;
 	private int accurancy;
 	
-	private void showInitError(String oldName, String newName, Exception ex){
+	private void showInitError(String oldName, String newName, Throwable t){
 		logger.error("Error while initializing: " + oldName + "\r\n"
-				+ "Instead using: " + newName, ex);
+				+ "Instead using: " + newName, t);
 	}
 	
-	private void showRenderError(String oldName, String newName, Exception ex){
+	private void showRenderError(String oldName, String newName, Throwable t){
 		logger.error("Error while rendering: " + oldName + "\r\n"
-				+ "Instead using: " + newName, ex);
+				+ "Instead using: " + newName, t);
 	}
 	
 	private void closeCurrent(){
@@ -62,9 +61,9 @@ public class StackedFractalRenderer implements FractalRenderer{
 			current.setFractalFormula(this.fractal);
 			current.setAccurancy(this.accurancy);
 			current.setColoringPattern(this.pattern);
-		}catch (FractalBuildException e) {
+		}catch (Throwable t) {
 			try {
-				showInitError(factory.getClass().getMethod("build").getReturnType().getName(), getNextRendererName(), e);
+				showInitError(factory.getClass().getMethod("build").getReturnType().getName(), getNextRendererName(), t);
 			} catch (NoSuchMethodException | SecurityException e1) {
 				logger.fatal(e1);
 				System.exit(0);
@@ -82,9 +81,9 @@ public class StackedFractalRenderer implements FractalRenderer{
 	public void render(FractalImageMap part, FractalRenderingHandle callback) {
 		try{
 			current.render(part, callback);
-		}catch (FractalRendererException e) {
+		}catch (Throwable t) {
 			closeCurrent();
-			showRenderError(current.getClass().getName(), getNextRendererName(), e);
+			showRenderError(current.getClass().getName(), getNextRendererName(), t);
 			buildTop();
 			render(part, callback);
 		}
