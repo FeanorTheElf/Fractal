@@ -15,15 +15,15 @@ public final class MandelbrotSet extends FractalClass{
 	}
 
 	@Override
-	public int getIterationCount(ComplexNumber point, int maxIteraions) {
+	public int getIterationCount(ComplexNumber point, int maxIterations) {
 		double currentReal = 0;
 		double real_square;
 		double im_square;
 		double currentImaginary = 0;
-		for (int i = 0; i <= maxIteraions; i++) {
+		for (int i = 0; i <= maxIterations; i++) {
 			real_square = currentReal * currentReal;
 			im_square = currentImaginary * currentImaginary;
-			currentImaginary = currentReal * currentImaginary * 2 + point.getImaginary();
+			currentImaginary = 2 * currentReal * currentImaginary + point.getImaginary();
 			currentReal = real_square - im_square + point.getReal();
 			if (real_square + im_square >= 4.0) {
 				return i;

@@ -18,7 +18,6 @@ import simon.fractal.rendering.FractalRendererException;
 import simon.fractal.rendering.FractalRenderingHandle;
 import simon.fractal.rendering.RenderMission;
 
-@Deprecated
 public class CppFractalRenderer implements FractalRenderer{
 	
 	private BufferedImage result;

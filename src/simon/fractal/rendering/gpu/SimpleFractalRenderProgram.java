@@ -158,7 +158,6 @@ class SimpleFractalRenderProgram implements FractalRenderProgram{
 		
 		startTime = System.currentTimeMillis();
 		int maxIterations = -(int)(Math.log10(m.getPart().getScale()) * accurancy);
-		maxIterations = 1000;
 		kernel.setArg(0, gpuBuffer);
 		kernel.setArg(1, m.getPart().getComplexUnitsXPerPixel());
 		kernel.setArg(2, m.getPart().getComplexUnitsYPerPixel());

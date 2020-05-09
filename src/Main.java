@@ -14,9 +14,11 @@ import simon.fractal.formulas.FractalBuildException;
 import simon.fractal.formulas.FractalPart;
 import simon.fractal.formulas.implementations.MandelbrotSet;
 import simon.fractal.rendering.FractalRenderer;
+import simon.fractal.rendering.cpp.CppFractalRenderer;
 import simon.fractal.rendering.gpu.CLException;
 import simon.fractal.rendering.gpu.DefaultRenderProgramFactory;
 import simon.fractal.rendering.gpu.GPUEnvironment;
+import simon.fractal.rendering.gpu.GPUFractalRenderer;
 import simon.fractal.rendering.stacked.FractalRendererFactory;
 import simon.fractal.rendering.stacked.StackedFractalRenderer;
 
